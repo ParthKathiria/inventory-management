@@ -56,7 +56,7 @@ model Expenses {
   timestamp DateTime
 }
 
-model saleSummary {
+model SalesSummary {
   salesSummaryId   String   @id
   totalValue       Float
   changePercentage Float?
