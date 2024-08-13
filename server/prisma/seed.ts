@@ -4,12 +4,27 @@ import path from "path";
 const prisma = new PrismaClient();
 
 async function deleteAllData(orderedFileNames: string[]) {
-  const modelNames = orderedFileNames.map((fileName) => {
+  const dependentModels = ['Sales', 'Purchases', 'ExpenseByCategory']; // Add all dependent models here
+  const independentModels = orderedFileNames.map((fileName) => {
     const modelName = path.basename(fileName, path.extname(fileName));
     return modelName.charAt(0).toUpperCase() + modelName.slice(1);
   });
 
-  for (const modelName of modelNames) {
+  // Delete dependent models first
+  for (const modelName of dependentModels) {
+    const model: any = prisma[modelName as keyof typeof prisma];
+    if (model) {
+      await model.deleteMany({});
+      console.log(`Cleared data from ${modelName}`);
+    } else {
+      console.error(
+        `Model ${modelName} not found. Please ensure the model name is correctly specified.`
+      );
+    }
+  }
+
+  // Then delete independent models
+  for (const modelName of independentModels) {
     const model: any = prisma[modelName as keyof typeof prisma];
     if (model) {
       await model.deleteMany({});
@@ -21,6 +36,7 @@ async function deleteAllData(orderedFileNames: string[]) {
     }
   }
 }
+
 
 async function main() {
   const dataDirectory = path.join(__dirname, "seedData");

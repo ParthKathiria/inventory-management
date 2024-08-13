@@ -5,6 +5,7 @@ export interface Product {
   name: string;
   price: number;
   rating?: number;
+  stockQuantity: number;
 }
 
 export interface SalesSummary {
@@ -37,6 +38,7 @@ export interface ExpenseByCategorySummary {
 export interface DashboardMetrics {
   popularProducts: Product[];
   salesSummary: SalesSummary[];
+  purchaseSummary: PurchaseSummary[];
   expenseSummary: ExpenseSummary[];
   expenseByCategorySummary: ExpenseByCategorySummary[];
 }

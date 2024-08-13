@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 export const getDashboardMetrics = async (
     req: Request,
-    res: Response,
+    res: Response
 ): Promise<void> => {
     try {
         const popularProducts = await prisma.products.findMany({
