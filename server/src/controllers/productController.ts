@@ -30,7 +30,8 @@ export const createProduct = async(req: Request, res: Response): Promise <void> 
                 rating,
                 stockQuantity,
             }
-        })
+        });
+        res.status(201).json(product);
     } catch (error) {
         res.status(500).json({message: "Error creating product"})
     }
