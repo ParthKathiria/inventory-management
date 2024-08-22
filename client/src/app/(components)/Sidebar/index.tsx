@@ -1,10 +1,19 @@
 "use client";
 
-import { useAppDispatch, useAppSelector } from '@/app/redux';
-import { setIsSidebarCollapsed } from '@/state';
-import { LucideIcon, Menu, Layout, Archive, SlidersHorizontal, User, Clipboard, CircleDollarSign } from 'lucide-react';
-import { usePathname } from 'next/navigation';
-import React from 'react';
+import { useAppDispatch, useAppSelector } from "@/app/redux";
+import { setIsSidebarCollapsed } from "@/state";
+import {
+  LucideIcon,
+  Menu,
+  Layout,
+  Archive,
+  SlidersHorizontal,
+  User,
+  Clipboard,
+  CircleDollarSign,
+} from "lucide-react";
+import { usePathname } from "next/navigation";
+import React from "react";
 import Link from "next/link";
 
 interface SidebarLinkProps {
@@ -18,10 +27,11 @@ const SidebarLink = ({
   href,
   icon: Icon,
   label,
-  isCollapsed
+  isCollapsed,
 }: SidebarLinkProps) => {
   const pathname = usePathname();
-  const isActive = pathname === href || (pathname === "/" && href === "/dashboard");
+  const isActive =
+    pathname === href || (pathname === "/" && href === "/dashboard");
 
   return (
     <Link href={href}>
@@ -57,63 +67,85 @@ const Sidebar = () => {
   };
 
   const sidebarClassNames = `fixed flex flex-col ${
-    isSidebarCollapsed ? "w-0 md:w-16" : "w-72 md:w-64" 
+    isSidebarCollapsed ? "w-0 md:w-16" : "w-72 md:w-64"
   } bg-white transition-all duration-300 overflow-hidden h-full shadow-md z-40`;
 
   return (
     <div className={sidebarClassNames}>
       {/* for web app logo and name */}
-      <div className={`flex gap-3 justify-between md:justify-normal items-center pt-8 ${isSidebarCollapsed ? "px-5" : "px-8"}`}>
-        <div>logo</div>
-        <h1 className={`${isSidebarCollapsed ? "hidden" : "block"} font-extrabold text-2xl`}>STOCKFLOW</h1>
-        <button className="md:hidden px-3 py-3 bg-gray-100 rounded-full hover:bg-blue-100"
-                onClick={toggleSidebar}>
+      <div
+        className={`flex gap-3 justify-between md:justify-normal items-center pt-8 ${
+          isSidebarCollapsed ? "px-5" : "px-8"
+        }`}
+      >
+        <div>
+          <img src="./public/pklogo.png" alt="Parth" />
+        </div>
+        <h1
+          className={`${
+            isSidebarCollapsed ? "hidden" : "block"
+          } font-extrabold text-2xl`}
+        >
+          STOCKFLOW
+        </h1>
+        <button
+          className="md:hidden px-3 py-3 bg-gray-100 rounded-full hover:bg-blue-100"
+          onClick={toggleSidebar}
+        >
           <Menu className="w-4 h-4" />
         </button>
       </div>
 
       {/* Links */}
       <div className="flex-grow mt-8">
-        <SidebarLink 
-          href="/dashboard" 
-          icon={Layout} 
-          label ="Dashboard" 
-          isCollapsed={isSidebarCollapsed}/>
+        <SidebarLink
+          href="/dashboard"
+          icon={Layout}
+          label="Dashboard"
+          isCollapsed={isSidebarCollapsed}
+        />
 
-        <SidebarLink 
-          href="/inventory" 
-          icon={Archive} 
-          label ="Inventory" 
-          isCollapsed={isSidebarCollapsed}/>
+        <SidebarLink
+          href="/inventory"
+          icon={Archive}
+          label="Inventory"
+          isCollapsed={isSidebarCollapsed}
+        />
 
-        <SidebarLink 
-          href="/products" 
+        <SidebarLink
+          href="/products"
           icon={Clipboard}
-          label ="Products" 
-          isCollapsed={isSidebarCollapsed}/>
+          label="Products"
+          isCollapsed={isSidebarCollapsed}
+        />
 
-        <SidebarLink 
-          href="/users" 
-          icon={User} 
-          label ="Users" 
-          isCollapsed={isSidebarCollapsed}/>
+        <SidebarLink
+          href="/users"
+          icon={User}
+          label="Users"
+          isCollapsed={isSidebarCollapsed}
+        />
 
-        <SidebarLink 
-          href="/settings" 
-          icon={SlidersHorizontal} 
-          label ="Settings" 
-          isCollapsed={isSidebarCollapsed}/>
+        <SidebarLink
+          href="/settings"
+          icon={SlidersHorizontal}
+          label="Settings"
+          isCollapsed={isSidebarCollapsed}
+        />
 
-        <SidebarLink 
-          href="/expenses" 
-          icon={CircleDollarSign} 
-          label ="Expenses" 
-          isCollapsed={isSidebarCollapsed}/>
+        <SidebarLink
+          href="/expenses"
+          icon={CircleDollarSign}
+          label="Expenses"
+          isCollapsed={isSidebarCollapsed}
+        />
       </div>
 
       {/* Footer */}
       <div className={`${isSidebarCollapsed ? "hidden" : "block"} mb-10`}>
-        <p className="text-center text-xs text-gray-500">&copy; 2024 Stockflow</p>
+        <p className="text-center text-xs text-gray-500">
+          &copy; 2024 Stockflow
+        </p>
       </div>
     </div>
   );
