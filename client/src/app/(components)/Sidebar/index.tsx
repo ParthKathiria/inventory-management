@@ -2,6 +2,7 @@
 
 import { useAppDispatch, useAppSelector } from "@/app/redux";
 import { setIsSidebarCollapsed } from "@/state";
+
 import {
   LucideIcon,
   Menu,
@@ -79,8 +80,9 @@ const Sidebar = () => {
         }`}
       >
         <div>
-          <img src="./public/pklogo.png" alt="Parth" />
+          <img src="/box.png" alt="Stockflow Logo" className="w-20 h-auto" />
         </div>
+
         <h1
           className={`${
             isSidebarCollapsed ? "hidden" : "block"
