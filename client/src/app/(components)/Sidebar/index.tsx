@@ -16,6 +16,7 @@ import {
 import { usePathname } from "next/navigation";
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface SidebarLinkProps {
   href: string;
@@ -80,7 +81,13 @@ const Sidebar = () => {
         }`}
       >
         <div>
-          <img src="/box.png" alt="Stockflow Logo" className="w-20 h-auto" />
+          <Image
+            src="/box.png"
+            alt="StockFlow Logo"
+            width={20}
+            height={20}
+            className="w-9 h-auto"
+          />
         </div>
 
         <h1

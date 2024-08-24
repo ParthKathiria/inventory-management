@@ -5,6 +5,7 @@ import { Bell, Menu, Moon, Settings, Sun } from "lucide-react";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/app/redux";
 import { setIsSidebarCollapsed, setIsDarkMode } from "@/state";
+import Image from "next/image";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
@@ -71,7 +72,14 @@ const Navbar = () => {
           </div>
           <hr className="w-0 h-7 border-solid border-l border-gray-300 mx-3" />
           <div className="flex items-center gap-3 cursor-pointer">
-            <img src="/user.svg" className="w-9 h-auto" />
+            <Image
+              src="/user.svg"
+              alt="User Logo"
+              width={9}
+              height={9}
+              className="w-9 h-auto"
+            />
+
             <span className="font-semibold"> Parth</span>
           </div>
         </div>
