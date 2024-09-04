@@ -1,0 +1,21 @@
+{
+  "projects": [
+    {
+      "src": "client/",
+      "use": "@vercel/static-build",  
+      "config": {
+        "buildCommand": "npm run build",
+        "outputDirectory": "build"  
+      }
+    },
+    {
+      "src": "server/",
+      "use": "@vercel/node",  
+      "config": {
+        "functions": {
+          "src/routes/*.ts": { "memory": 1024, "maxDuration": 10 }  
+        }
+      }
+    }
+  ]
+}
